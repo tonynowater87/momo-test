@@ -1,6 +1,7 @@
 package com.tonynowater.momotest.data.model.ui
 
 data class AnimalDetailModel(
+    val id: Int,
     val aNameCh: String,
     val aNameEn: String,
     val aPicture1Url: String,

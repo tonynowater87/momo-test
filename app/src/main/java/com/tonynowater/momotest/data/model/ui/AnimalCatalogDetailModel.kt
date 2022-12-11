@@ -1,6 +1,6 @@
 package com.tonynowater.momotest.data.model.ui
 
-data class AnimalCategoryDetailModel(
+data class AnimalCatalogDetailModel(
     val eName: String,
     val eInfo: String,
     val eMemo: String,
