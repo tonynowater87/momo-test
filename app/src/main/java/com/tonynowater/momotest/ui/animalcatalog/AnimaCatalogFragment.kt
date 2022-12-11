@@ -33,6 +33,9 @@ class AnimaCatalogFragment : Fragment() {
     ): View? {
 
         _binding = FragmentAnimalCatalogBinding.inflate(inflater, container, false)
+        viewModel.uiState.observe(viewLifecycleOwner) {
+            println("uiState = $it")
+        }
         return binding.root
 
     }

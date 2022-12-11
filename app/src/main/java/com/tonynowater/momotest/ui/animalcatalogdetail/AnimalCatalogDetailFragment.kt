@@ -37,6 +37,9 @@ class AnimalCatalogDetailFragment : Fragment() {
     ): View? {
 
         _binding = FragmentAnimalCatalogDetailBinding.inflate(inflater, container, false)
+        viewModel.uiState.observe(viewLifecycleOwner) {
+            println("uiState = $it")
+        }
         return binding.root
 
     }
@@ -58,7 +61,7 @@ class AnimalCatalogDetailFragment : Fragment() {
             )
         }
 
-        viewModel.load()
+        viewModel.load(catalogId = args.catalogId)
     }
 
     override fun onDestroyView() {

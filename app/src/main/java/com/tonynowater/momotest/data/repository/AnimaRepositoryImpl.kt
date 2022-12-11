@@ -1,9 +1,11 @@
 package com.tonynowater.momotest.data.repository
 
 import com.tonynowater.momotest.data.datasource.network.NetworkDatasource
+import com.tonynowater.momotest.data.model.ui.AnimalCatalogDetailModel
 import com.tonynowater.momotest.data.model.ui.AnimalCatalogModel
 import com.tonynowater.momotest.data.model.ui.AnimalDetailModel
 
+// TODO decrease network requests
 class AnimaRepositoryImpl(private val networkDatasource: NetworkDatasource) : AnimaRepository {
 
     override suspend fun getCategoryList(): List<AnimalCatalogModel> {
@@ -18,9 +20,21 @@ class AnimaRepositoryImpl(private val networkDatasource: NetworkDatasource) : An
         }
     }
 
-    override suspend fun getCategoryDetail(catalogId: Int): AnimalCatalogModel? {
-        val categoryList = getCategoryList()
-        return categoryList.firstOrNull { it.id == catalogId }
+    override suspend fun getCategoryDetail(catalogId: Int): AnimalCatalogDetailModel? {
+        val catalog = networkDatasource.getAnimalCatalogList().result.results
+        val detailList = networkDatasource.getAnimalDetailList().result.results
+        val animaDetail = detailList.firstOrNull { it.id == catalogId } ?: return null
+        val catalogDetail = catalog.firstOrNull { it.id == catalogId } ?: return null
+        return AnimalCatalogDetailModel(
+            eName = catalogDetail.eName,
+            eInfo = catalogDetail.eInfo,
+            eMemo = catalogDetail.eMemo,
+            ePictureUrl = catalogDetail.ePicUrl,
+            eLinkUrl = catalogDetail.eUrl,
+            aNameCh = animaDetail.aNameCh,
+            aPicture1Url = animaDetail.aPic01Url,
+            aAlsoKnown = animaDetail.aAlsoknown
+        )
     }
 
     override suspend fun getAnimalDetail(animalId: Int): AnimalDetailModel? {

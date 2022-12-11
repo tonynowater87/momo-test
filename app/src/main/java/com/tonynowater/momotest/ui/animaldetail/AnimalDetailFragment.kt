@@ -37,8 +37,10 @@ class AnimalDetailFragment : Fragment() {
     ): View? {
 
         _binding = FragmentAnimalDetailBinding.inflate(inflater, container, false)
+        viewModel.uiState.observe(viewLifecycleOwner) {
+            println("uiState = $it")
+        }
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,7 +51,7 @@ class AnimalDetailFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        viewModel.load()
+        viewModel.load(args.animalId)
     }
 
     override fun onDestroyView() {
