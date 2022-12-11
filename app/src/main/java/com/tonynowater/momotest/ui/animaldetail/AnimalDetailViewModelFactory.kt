@@ -7,7 +7,7 @@ import com.tonynowater.momotest.data.repository.AnimaRepository
 class AnimalDetailViewModelFactory(private val animalRepository: AnimaRepository) :
     ViewModelProvider.Factory {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return AnimalDetailViewModel(animalRepository) as T
     }
 }

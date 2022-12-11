@@ -6,6 +6,7 @@ import com.tonynowater.momotest.data.model.ui.AnimalCatalogModel
 import com.tonynowater.momotest.data.model.ui.AnimalDetailModel
 
 // TODO decrease network requests
+// TODO offline mode support
 class AnimaRepositoryImpl(private val networkDatasource: NetworkDatasource) : AnimaRepository {
 
     override suspend fun getCategoryList(): List<AnimalCatalogModel> {
@@ -26,6 +27,7 @@ class AnimaRepositoryImpl(private val networkDatasource: NetworkDatasource) : An
         val animaDetail = detailList.firstOrNull { it.id == catalogId } ?: return null
         val catalogDetail = catalog.firstOrNull { it.id == catalogId } ?: return null
         return AnimalCatalogDetailModel(
+            id = catalogDetail.id,
             eName = catalogDetail.eName,
             eInfo = catalogDetail.eInfo,
             eMemo = catalogDetail.eMemo,

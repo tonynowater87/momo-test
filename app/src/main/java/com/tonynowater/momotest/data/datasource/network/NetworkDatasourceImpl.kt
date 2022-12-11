@@ -19,6 +19,7 @@ private interface RetrofitNetworkApi {
 
 class NetworkDatasourceImpl : NetworkDatasource {
 
+    // TODO set baseUrl by different flavor
     private val networkApi = Retrofit.Builder()
         .baseUrl("https:///data.taipei/api/v1/dataset/")
         .client(
