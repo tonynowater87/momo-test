@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.tonynowater.momotest.databinding.FragmentAnimalCatalogDetailBinding
+import com.tonynowater.momotest.module.DataModule
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -20,6 +22,12 @@ class AnimalCatalogDetailFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private val viewModel by viewModels<AnimalCatalogDetailViewModel>(factoryProducer = {
+        AnimalCatalogDetailViewModelFactory(
+            animalRepository = DataModule.getInstance().animalRepository
+        )
+    })
 
     private val args: AnimalCatalogDetailFragmentArgs by navArgs()
 
@@ -49,6 +57,8 @@ class AnimalCatalogDetailFragment : Fragment() {
                 )
             )
         }
+
+        viewModel.load()
     }
 
     override fun onDestroyView() {

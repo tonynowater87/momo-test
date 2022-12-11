@@ -20,7 +20,7 @@ private interface RetrofitNetworkApi {
 class NetworkDatasourceImpl : NetworkDatasource {
 
     private val networkApi = Retrofit.Builder()
-        .baseUrl("https:///data.taipei/api/v1/dataset")
+        .baseUrl("https:///data.taipei/api/v1/dataset/")
         .client(
             OkHttpClient.Builder()
                 .apply {
