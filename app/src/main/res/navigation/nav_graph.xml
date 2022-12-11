@@ -7,37 +7,51 @@
 
     <fragment
         android:id="@+id/AnimalCatalogFragment"
-        android:name="com.tonynowater.momotest.feature.animalcatalog.AnimaCatalogFragment"
+        android:name="com.tonynowater.momotest.ui.animalcatalog.AnimaCatalogFragment"
         android:label="@string/animal_catalog_fragment_label"
         tools:layout="@layout/fragment_animal_catalog">
 
         <action
             android:id="@+id/action_AnimalCatalogFragment_to_AnimalCatalogDetailFragment"
-            app:destination="@id/AnimalCatalogDetailFragment" />
+            app:destination="@id/AnimalCatalogDetailFragment">
+            <argument
+                android:name="catalog_id"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
     </fragment>
+
     <fragment
         android:id="@+id/AnimalCatalogDetailFragment"
-        android:name="com.tonynowater.momotest.feature.animalcatalogdetail.AnimalCatalogDetailFragment"
+        android:name="com.tonynowater.momotest.ui.animalcatalogdetail.AnimalCatalogDetailFragment"
         android:label="@string/animal_catalog_detail_fragment_label"
         tools:layout="@layout/fragment_animal_catalog_detail">
 
-        <action
-            android:id="@+id/action_AnimalCatalogDetailFragment_to_AnimalCatalogFragment"
-            app:destination="@id/AnimalCatalogFragment" />
+        <argument
+            android:name="catalog_id"
+            app:argType="integer"
+            app:nullable="false" />
 
         <action
             android:id="@+id/action_AnimalCatalogDetailFragment_to_AnimalDetailFragment"
-            app:destination="@id/AnimalDetailFragment" />
+            app:destination="@id/AnimalDetailFragment">
+            <argument
+                android:name="animal_id"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
     </fragment>
 
     <fragment
         android:id="@+id/AnimalDetailFragment"
-        android:name="com.tonynowater.momotest.feature.animaldetail.AnimalDetailFragment"
+        android:name="com.tonynowater.momotest.ui.animaldetail.AnimalDetailFragment"
         android:label="@string/animal_detail_fragment_label"
         tools:layout="@layout/fragment_animal_detail">
 
-        <action
-            android:id="@+id/action_AnimalDetailFragment_to_AnimalCatalogDetailFragment"
-            app:destination="@id/AnimalCatalogDetailFragment" />
+        <argument
+            android:name="animal_id"
+            app:argType="integer"
+            app:nullable="false" />
+
     </fragment>
 </navigation>
