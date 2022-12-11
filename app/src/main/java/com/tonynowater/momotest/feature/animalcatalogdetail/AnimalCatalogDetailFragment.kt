@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.tonynowater.momotest.R
 import com.tonynowater.momotest.databinding.FragmentAnimalCatalogDetailBinding
 
 /**
@@ -34,11 +33,11 @@ class AnimalCatalogDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_AnimalCatalogDetailFragment_to_AnimalCatalogFragment)
+            findNavController().navigate(AnimalCatalogDetailFragmentDirections.actionAnimalCatalogDetailFragmentToAnimalCatalogFragment())
         }
 
         binding.textviewSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_AnimalCatalogDetailFragment_to_AnimalDetailFragment)
+            findNavController().navigate(AnimalCatalogDetailFragmentDirections.actionAnimalCatalogDetailFragmentToAnimalDetailFragment())
         }
     }
 

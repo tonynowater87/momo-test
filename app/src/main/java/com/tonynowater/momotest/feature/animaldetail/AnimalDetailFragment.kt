@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.tonynowater.momotest.R
 import com.tonynowater.momotest.databinding.FragmentAnimalDetailBinding
 
 /**
@@ -34,7 +33,7 @@ class AnimalDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.textviewThird.setOnClickListener {
-            findNavController().navigate(R.id.action_AnimalDetailFragment_to_AnimalCatalogDetailFragment)
+            findNavController().navigate(AnimalDetailFragmentDirections.actionAnimalDetailFragmentToAnimalCatalogDetailFragment())
         }
     }
 
