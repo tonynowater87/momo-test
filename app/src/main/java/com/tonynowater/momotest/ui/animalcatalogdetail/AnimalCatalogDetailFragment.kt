@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.tonynowater.momotest.R
 import com.tonynowater.momotest.databinding.FragmentAnimalCatalogDetailBinding
 import com.tonynowater.momotest.module.DataModule
 
@@ -29,6 +32,7 @@ class AnimalCatalogDetailFragment : Fragment() {
         )
     })
 
+    private val listAdapter = AnimalDetailListAdapter()
     private val args: AnimalCatalogDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -38,7 +42,23 @@ class AnimalCatalogDetailFragment : Fragment() {
 
         _binding = FragmentAnimalCatalogDetailBinding.inflate(inflater, container, false)
         viewModel.uiState.observe(viewLifecycleOwner) {
-            println("uiState = $it")
+            when (it) {
+                is AnimalCatalogDetailUiState.Loading -> {
+                    binding.progressBar.isVisible = true
+                }
+                is AnimalCatalogDetailUiState.Success -> {
+                    binding.progressBar.isVisible = false
+                    dataBinding(it)
+                }
+                is AnimalCatalogDetailUiState.Error -> {
+                    binding.progressBar.isVisible = false
+                    MaterialAlertDialogBuilder(requireActivity())
+                        .setTitle(R.string.errorTitle)
+                        .setMessage(it.error.toString())
+                        .setPositiveButton(resources.getString(android.R.string.ok), null)
+                        .show()
+                }
+            }
         }
         return binding.root
 
@@ -46,26 +66,33 @@ class AnimalCatalogDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        Toast.makeText(requireContext(), "catalogId=${args.catalogId}", Toast.LENGTH_SHORT).show()
-
-        binding.buttonSecond.setOnClickListener {
-
-        }
-
-        binding.textviewSecond.setOnClickListener {
-            findNavController().navigate(
-                AnimalCatalogDetailFragmentDirections.actionAnimalCatalogDetailFragmentToAnimalDetailFragment(
-                    animalId = 2
-                )
-            )
-        }
-
         viewModel.load(catalogId = args.catalogId)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun dataBinding(it: AnimalCatalogDetailUiState.Success) {
+        binding.textViewInfo.text = it.data.eInfo
+        binding.textViewMemo.text = it.data.eMemo.ifEmpty {
+            getString(R.string.noMemo)
+        }
+        Glide.with(requireContext())
+            .load(it.data.ePictureUrl)
+            .centerCrop()
+            .into(binding.imageViewPicture)
+        binding.recyclerViewAnimal.adapter = listAdapter.apply {
+            onClickAnimal = { animalId, title ->
+                findNavController().navigate(
+                    AnimalCatalogDetailFragmentDirections.actionAnimalCatalogDetailFragmentToAnimalDetailFragment(
+                        animalId = animalId,
+                        title = title
+                    )
+                )
+            }
+            submitList(it.data.animals)
+        }
     }
 }

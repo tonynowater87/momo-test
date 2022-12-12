@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.MomoTest" parent="Base.Theme.MomoTest" />
+
+    <style name="Theme.Text.TitleLarge" parent="TextAppearance.Material3.TitleLarge" />
+    <style name="Theme.Text.TitleMedium" parent="TextAppearance.Material3.TitleMedium" />
+    <style name="Theme.Text.TitleSmall" parent="TextAppearance.Material3.TitleSmall" />
+    <style name="Theme.Text.BodyLarge" parent="TextAppearance.Material3.BodyLarge" />
+    <style name="Theme.Text.BodyMedium" parent="TextAppearance.Material3.BodyMedium" />
+    <style name="Theme.Text.BodySmall" parent="TextAppearance.Material3.BodySmall" />
 </resources>

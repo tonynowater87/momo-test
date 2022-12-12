@@ -7,7 +7,5 @@ data class AnimalCatalogDetailModel(
     val eMemo: String,
     val ePictureUrl: String,
     val eLinkUrl: String,
-    val aNameCh: String,
-    val aPicture1Url: String,
-    val aAlsoKnown: String
+    val animals: List<AnimalDetailModel>
 )

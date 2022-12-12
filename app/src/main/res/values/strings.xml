@@ -44,4 +44,14 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="errorTitle">Error</string>
+    <string name="catalogTitle">台北市立動物園</string>
+    <string name="noMemo">無休館資訊</string>
+    <string name="openUrl">在網頁開啟</string>
+    <string name="animalListTitle">動物資料</string>
+    <string name="alsoKnownTitle">別名</string>
+    <string name="behaviorTitle">行為習性</string>
+    <string name="featureTitle">特徵</string>
+    <string name="lastUpdate">最後更新：%1$s</string>
+    <string name="noAlsoKnown">無別名資訊</string>
 </resources>

@@ -31,9 +31,7 @@ class AnimalCatalogDetailViewModelTest {
             eMemo = "eMemo",
             ePictureUrl = "ePictureUrl",
             eLinkUrl = "eLinkUrl",
-            aNameCh = "aNameCh",
-            aPicture1Url = "aPicture1Url",
-            aAlsoKnown = "aAlsoKnown"
+            animals = emptyList()
         )
         viewModel =
             AnimalCatalogDetailViewModel(animaRepository = object : TestAnimalRepositoryImpl() {

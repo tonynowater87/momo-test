@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewPicture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/chevron_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewName"
+            style="@style/Theme.Text.TitleMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            app:layout_constraintBottom_toTopOf="@id/textViewInfo"
+            app:layout_constraintEnd_toStartOf="@id/imageViewArrow"
+            app:layout_constraintStart_toEndOf="@id/imageViewPicture"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="企鵝館" />
+
+        <TextView
+            android:id="@+id/textViewInfo"
+            style="@style/Theme.Text.BodySmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="2"
+            android:paddingStart="4dp"
+            app:layout_constraintBottom_toTopOf="@id/textViewMemo"
+            app:layout_constraintEnd_toStartOf="@id/imageViewArrow"
+            app:layout_constraintStart_toEndOf="@id/imageViewPicture"
+            app:layout_constraintTop_toBottomOf="@id/textViewName"
+            tools:text="企鵝分布於南半球，是不會飛的水生鳥類，卻是游泳專家，在水裡潛泳可以「飛」得又快又好。現在的企鵝約有18種，有些種類一生中約有75%時間生活在海上，僅在繁殖和換羽時才登上岸。\n企鵝館展示「國王企鵝」及「黑腳企鵝」。2001年9月企鵝館中的國王企鵝首度繁殖成功，孵出第一隻國王企鵝寶寶。野外的企鵝寶寶在父母的照顧下，約34-40天後加入幼鳥的群體生活，待10至13個月換羽後便可下海獨立生活。國王企鵝主要分布在南美、紐西蘭及南非南方海域等地；喜歡吃魚、磷蝦及烏賊。繁殖季時會大量聚在一起，每次只生一個蛋。通常是企鵝爸媽輪流孵蛋，待8周後企鵝寶寶孵出為止。\n\n在觀賞可愛的企鵝之餘，也可以在企鵝館了解牠們的分布、形態特徵、生活習性及繁殖求偶行為喔！" />
+
+        <TextView
+            android:id="@+id/textViewMemo"
+            style="@style/Theme.Text.BodySmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageViewArrow"
+            app:layout_constraintStart_toEndOf="@id/imageViewPicture"
+            app:layout_constraintTop_toBottomOf="@id/textViewInfo"
+            tools:text="每月第二個週一休館" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:alpha="0.5"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

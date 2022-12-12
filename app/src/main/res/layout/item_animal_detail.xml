@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewPicture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/chevron_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewName"
+            style="@style/Theme.Text.TitleMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            app:layout_constraintBottom_toTopOf="@id/textViewInfo"
+            app:layout_constraintEnd_toStartOf="@id/imageViewArrow"
+            app:layout_constraintStart_toEndOf="@id/imageViewPicture"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="大貓熊" />
+
+        <TextView
+            android:id="@+id/textViewInfo"
+            style="@style/Theme.Text.BodySmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="2"
+            android:paddingStart="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageViewArrow"
+            app:layout_constraintStart_toEndOf="@id/imageViewPicture"
+            app:layout_constraintTop_toBottomOf="@id/textViewName"
+            tools:text="貓熊、熊貓" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:alpha="0.5"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

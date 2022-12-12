@@ -18,6 +18,11 @@
                 android:name="catalog_id"
                 app:argType="integer"
                 app:nullable="false" />
+
+            <argument
+                android:name="title"
+                app:argType="string"
+                app:nullable="false" />
         </action>
     </fragment>
 
@@ -30,6 +35,11 @@
         <argument
             android:name="catalog_id"
             app:argType="integer"
+            app:nullable="false" />
+
+        <argument
+            android:name="title"
+            app:argType="string"
             app:nullable="false" />
 
         <action
@@ -51,6 +61,11 @@
         <argument
             android:name="animal_id"
             app:argType="integer"
+            app:nullable="false" />
+
+        <argument
+            android:name="title"
+            app:argType="string"
             app:nullable="false" />
 
     </fragment>

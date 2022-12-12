@@ -1,6 +1,7 @@
 package com.tonynowater.momotest.data.repository
 
 import com.tonynowater.momotest.data.datasource.network.NetworkDatasource
+import com.tonynowater.momotest.data.model.dto.AnimalDetailListDTO
 import com.tonynowater.momotest.data.model.ui.AnimalCatalogDetailModel
 import com.tonynowater.momotest.data.model.ui.AnimalCatalogModel
 import com.tonynowater.momotest.data.model.ui.AnimalDetailModel
@@ -24,8 +25,10 @@ class AnimaRepositoryImpl(private val networkDatasource: NetworkDatasource) : An
     override suspend fun getCategoryDetail(catalogId: Int): AnimalCatalogDetailModel? {
         val catalog = networkDatasource.getAnimalCatalogList().result.results
         val detailList = networkDatasource.getAnimalDetailList().result.results
-        val animaDetail = detailList.firstOrNull { it.id == catalogId } ?: return null
         val catalogDetail = catalog.firstOrNull { it.id == catalogId } ?: return null
+        val animaDetail = detailList.filter { it.id == catalogId }.let {
+            mapperToAnimalDetailModel(it)
+        }
         return AnimalCatalogDetailModel(
             id = catalogDetail.id,
             eName = catalogDetail.eName,
@@ -33,14 +36,19 @@ class AnimaRepositoryImpl(private val networkDatasource: NetworkDatasource) : An
             eMemo = catalogDetail.eMemo,
             ePictureUrl = catalogDetail.ePicUrl,
             eLinkUrl = catalogDetail.eUrl,
-            aNameCh = animaDetail.aNameCh,
-            aPicture1Url = animaDetail.aPic01Url,
-            aAlsoKnown = animaDetail.aAlsoknown
+            animals = animaDetail
         )
     }
 
     override suspend fun getAnimalDetail(animalId: Int): AnimalDetailModel? {
-        val detailList = networkDatasource.getAnimalDetailList().result.results.map {
+        val detailList = networkDatasource.getAnimalDetailList().result.results.let {
+            mapperToAnimalDetailModel(it)
+        }
+        return detailList.firstOrNull { it.id == animalId }
+    }
+
+    private fun mapperToAnimalDetailModel(result: List<AnimalDetailListDTO.Result.Result>): List<AnimalDetailModel> {
+        return result.map {
             AnimalDetailModel(
                 id = it.id,
                 aNameCh = it.aNameCh,
@@ -52,7 +60,5 @@ class AnimaRepositoryImpl(private val networkDatasource: NetworkDatasource) : An
                 aImportantDate = it.importdate.date
             )
         }
-
-        return detailList.firstOrNull { it.id == animalId }
     }
 }
